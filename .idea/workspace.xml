@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64b4409c-1c5f-4269-b588-a4198ac80a41" name="Changes" comment="Add requirements, csv and notebook to load csv into df">
-      <change afterPath="$PROJECT_DIR$/src/simulator/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/simulator/sample_eval.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/double_descent_mtcars_reg.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/src/double_descent_mtcars_reg.ipynb" afterDir="false" />
-    </list>
+    <list default="true" id="64b4409c-1c5f-4269-b588-a4198ac80a41" name="Changes" comment="Add requirements, csv and notebook to load csv into df" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -105,7 +99,7 @@
       <workItem from="1720887606379" duration="5141000" />
       <workItem from="1721311216703" duration="1336000" />
       <workItem from="1721525804886" duration="3829000" />
-      <workItem from="1721658394675" duration="1510000" />
+      <workItem from="1721658394675" duration="1553000" />
     </task>
     <task id="LOCAL-00001" summary="Add requirements, csv and notebook to load csv into df">
       <option name="closed" value="true" />
