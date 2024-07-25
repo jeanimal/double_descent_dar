@@ -21,11 +21,24 @@ class TestSampleEval(unittest.TestCase):
         self.assertEqual(y_sub.shape, (num_rows, 1))
         self.assertEqual(X_sub.shape, (num_rows, num_cols))
 
-    def test_mismatched_rows(self):
+    def test_different_number_of_rows(self):
         X = pd.DataFrame({'a': range(0, 9), 'b': range(10, 19)})
         y = pd.DataFrame({'target': range(0, 8)})
-        with self.assertRaises(ValueError):
+        with self.assertRaisesRegex(ValueError, 'same number of rows'):
             sample_eval.sample_rows_and_cols(X, y, 2, 2, random_state=1, replace=True)
+
+    def test_sample_too_many_rows(self):
+        X = pd.DataFrame({'a': range(0, 9), 'b': range(10, 19)})
+        y = pd.DataFrame({'target': range(0, 9)})
+        with self.assertRaisesRegex(ValueError, 'larger sample'):
+            sample_eval.sample_rows_and_cols(X, y, 11, 2, random_state=1, replace=False)
+
+    def test_sample_too_many_cols(self):
+        X = pd.DataFrame({'a': range(0, 9), 'b': range(10, 19)})
+        y = pd.DataFrame({'target': range(0, 9)})
+        with self.assertRaisesRegex(ValueError, 'larger sample'):
+            sample_eval.sample_rows_and_cols(X, y, 3, 3, random_state=1, replace=False)
+
 
 
 if __name__ == '__main__':
