@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="64b4409c-1c5f-4269-b588-a4198ac80a41" name="Changes" comment="Add requirements, csv and notebook to load csv into df">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/double_descent_dar/sample_eval.py" beforeDir="false" afterPath="$PROJECT_DIR$/double_descent_dar/sample_eval.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/double_descent_mtcars_reg.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/double_descent_mtcars_reg.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,7 +202,7 @@
       <workItem from="1721658394675" duration="1553000" />
       <workItem from="1721829013450" duration="1451000" />
       <workItem from="1721873286568" duration="1722000" />
-      <workItem from="1721914652207" duration="810000" />
+      <workItem from="1721914652207" duration="2681000" />
     </task>
     <task id="LOCAL-00001" summary="Add requirements, csv and notebook to load csv into df">
       <option name="closed" value="true" />
@@ -232,6 +232,6 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/pythonProject1$main.coverage" NAME="main Coverage Results" MODIFIED="1720580689717" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/project_double_descent_dar$.coverage" NAME=" Coverage Results" MODIFIED="1721914862399" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/project_double_descent_dar$.coverage" NAME=" Coverage Results" MODIFIED="1721915591763" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
   </component>
 </project>

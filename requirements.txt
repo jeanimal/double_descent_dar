@@ -1,4 +1,5 @@
 jupyter
+matplotlib
 pandas
 parameterized
 scikit-learn
