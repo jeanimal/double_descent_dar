@@ -7,7 +7,6 @@
     <list default="true" id="64b4409c-1c5f-4269-b588-a4198ac80a41" name="Changes" comment="Add requirements, csv and notebook to load csv into df">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/double_descent_mtcars_reg.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/double_descent_mtcars_reg.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,7 +201,7 @@
       <workItem from="1721658394675" duration="1553000" />
       <workItem from="1721829013450" duration="1451000" />
       <workItem from="1721873286568" duration="1722000" />
-      <workItem from="1721914652207" duration="2681000" />
+      <workItem from="1721914652207" duration="3410000" />
     </task>
     <task id="LOCAL-00001" summary="Add requirements, csv and notebook to load csv into df">
       <option name="closed" value="true" />
