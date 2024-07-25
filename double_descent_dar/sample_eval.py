@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-
+from sklearn.model_selection import train_test_split
 
 def sample_rows_and_cols(X: pd.DataFrame, y: pd.DataFrame, num_sampled_rows: int, num_sampled_columns: int,
                          random_state: int, replace: bool) -> tuple[pd.DataFrame, pd.DataFrame]:
@@ -39,3 +39,15 @@ def sample_rows_and_cols(X: pd.DataFrame, y: pd.DataFrame, num_sampled_rows: int
     y_subset = y.iloc[indices]
     X_subset = X_subset.sample(n=num_sampled_columns, random_state=random_state, replace=replace, axis=1)
     return X_subset, y_subset
+
+def split_and_calc_metric(X, y, test_size, metric_func, random_state):
+    X_train, X_valid, y_train, y_valid = train_test_split(
+        X, y, test_size=test_size, random_state=random_state)
+    model.fit(X_train, y_train)
+    metric = metric_func(y_valid, model.predict(X_valid))
+    return metric
+
+def sample_and_calc_metric(X, y, num_sampled_rows, num_sampled_columns, test_size, metric_func, random_state):
+    X_sub, y_sub = sample_rows_and_cols(X, y, num_sampled_rows, num_sampled_columns, random_state+1)
+    metric = split_and_calc_metric(X_sub, y_sub, test_size, metric_func, random_state)
+    return metric
