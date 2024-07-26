@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="64b4409c-1c5f-4269-b588-a4198ac80a41" name="Changes" comment="Add requirements, csv and notebook to load csv into df">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/double_descent_dar/sample_eval.py" beforeDir="false" afterPath="$PROJECT_DIR$/double_descent_dar/sample_eval.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/double_descent_mtcars_reg.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/double_descent_mtcars_reg.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,24 +40,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python tests.Python tests for test_sample_eval.TestSampleEval.test_sample_too_many_cols.executor": "Run",
-    "Python tests.Python tests for test_sample_eval.TestSampleEval.test_sample_too_many_rows.executor": "Run",
-    "Python tests.Python tests in test_sample_eval.py.executor": "Run",
-    "Python tests.Python tests in tests.executor": "Run",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.notebooks.jupyter.connections.configuration.JupyterServerConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python tests.Python tests for test_sample_eval.TestSampleEval.test_sample_too_many_cols.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_sample_eval.TestSampleEval.test_sample_too_many_rows.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_sample_eval.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in tests.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.notebooks.jupyter.connections.configuration.JupyterServerConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/" />
@@ -201,7 +202,9 @@
       <workItem from="1721658394675" duration="1553000" />
       <workItem from="1721829013450" duration="1451000" />
       <workItem from="1721873286568" duration="1722000" />
-      <workItem from="1721914652207" duration="3410000" />
+      <workItem from="1721914652207" duration="3856000" />
+      <workItem from="1722001627545" duration="1838000" />
+      <workItem from="1722004374526" duration="1144000" />
     </task>
     <task id="LOCAL-00001" summary="Add requirements, csv and notebook to load csv into df">
       <option name="closed" value="true" />

@@ -40,14 +40,15 @@ def sample_rows_and_cols(X: pd.DataFrame, y: pd.DataFrame, num_sampled_rows: int
     X_subset = X_subset.sample(n=num_sampled_columns, random_state=random_state, replace=replace, axis=1)
     return X_subset, y_subset
 
-def split_and_calc_metric(X, y, test_size, metric_func, random_state):
-    X_train, X_valid, y_train, y_valid = train_test_split(
+def split_and_calc_metric(X, y, test_size, model, metric_func, random_state):
+    X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=test_size, random_state=random_state)
     model.fit(X_train, y_train)
-    metric = metric_func(y_valid, model.predict(X_valid))
-    return metric
+    metric_train = metric_func(y_train, model.predict(X_train))
+    metric_test = metric_func(y_test, model.predict(X_test))
+    return {'train':metric_train, 'test':metric_test}
 
-def sample_and_calc_metric(X, y, num_sampled_rows, num_sampled_columns, test_size, metric_func, random_state):
-    X_sub, y_sub = sample_rows_and_cols(X, y, num_sampled_rows, num_sampled_columns, random_state+1)
-    metric = split_and_calc_metric(X_sub, y_sub, test_size, metric_func, random_state)
-    return metric
+def sample_and_calc_metric(X, y, num_sampled_rows, num_sampled_columns, test_size, model, metric_func, random_state, replace):
+    X_sub, y_sub = sample_rows_and_cols(X, y, num_sampled_rows, num_sampled_columns, random_state+1, replace=replace)
+    metric_tuple = split_and_calc_metric(X_sub, y_sub, test_size, model, metric_func, random_state)
+    return metric_tuple
