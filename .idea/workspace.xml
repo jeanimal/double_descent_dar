@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64b4409c-1c5f-4269-b588-a4198ac80a41" name="Changes" comment="Add requirements, csv and notebook to load csv into df">
+    <list default="true" id="64b4409c-1c5f-4269-b588-a4198ac80a41" name="Changes" comment="Got U curve in notebook with reasonable settings.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/double_descent_mtcars_reg.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/double_descent_mtcars_reg.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,26 +39,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python tests.Python tests for test_sample_eval.TestSampleEval.executor": "Run",
-    "Python tests.Python tests for test_sample_eval.TestSampleEval.test_sample_too_many_cols.executor": "Run",
-    "Python tests.Python tests for test_sample_eval.TestSampleEval.test_sample_too_many_rows.executor": "Run",
-    "Python tests.Python tests for test_sample_eval.TestSampleEval.test_split_and_calc_metric.executor": "Run",
-    "Python tests.Python tests in test_sample_eval.py.executor": "Run",
-    "Python tests.Python tests in tests.executor": "Run",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.notebooks.jupyter.connections.configuration.JupyterServerConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python tests.Python tests for test_sample_eval.TestSampleEval.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_sample_eval.TestSampleEval.test_sample_too_many_cols.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_sample_eval.TestSampleEval.test_sample_too_many_rows.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_sample_eval.TestSampleEval.test_split_and_calc_metric.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_sample_eval.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in tests.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.notebooks.jupyter.connections.configuration.JupyterServerConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/" />
@@ -206,6 +207,8 @@
       <workItem from="1722001627545" duration="1838000" />
       <workItem from="1722004374526" duration="2154000" />
       <workItem from="1722006540157" duration="3961000" />
+      <workItem from="1722099450348" duration="250000" />
+      <workItem from="1722107672042" duration="2186000" />
     </task>
     <task id="LOCAL-00001" summary="Add requirements, csv and notebook to load csv into df">
       <option name="closed" value="true" />
@@ -223,7 +226,23 @@
       <option name="project" value="LOCAL" />
       <updated>1720905520945</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Got U curve in notebook with reasonable settings.">
+      <option name="closed" value="true" />
+      <created>1722107762872</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1722107762872</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Got U curve in notebook with reasonable settings.">
+      <option name="closed" value="true" />
+      <created>1722107837905</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1722107837905</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,7 +250,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add requirements, csv and notebook to load csv into df" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add requirements, csv and notebook to load csv into df" />
+    <MESSAGE value="Got U curve in notebook with reasonable settings." />
+    <option name="LAST_COMMIT_MESSAGE" value="Got U curve in notebook with reasonable settings." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/pythonProject1$main.coverage" NAME="main Coverage Results" MODIFIED="1720580689717" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
