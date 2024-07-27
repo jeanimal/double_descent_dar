@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64b4409c-1c5f-4269-b588-a4198ac80a41" name="Changes" comment="Add requirements, csv and notebook to load csv into df">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/double_descent_dar/sample_eval.py" beforeDir="false" afterPath="$PROJECT_DIR$/double_descent_dar/sample_eval.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/double_descent_mtcars_reg.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/double_descent_mtcars_reg.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_sample_eval.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_sample_eval.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -208,7 +205,7 @@
       <workItem from="1721914652207" duration="3856000" />
       <workItem from="1722001627545" duration="1838000" />
       <workItem from="1722004374526" duration="2154000" />
-      <workItem from="1722006540157" duration="3804000" />
+      <workItem from="1722006540157" duration="3961000" />
     </task>
     <task id="LOCAL-00001" summary="Add requirements, csv and notebook to load csv into df">
       <option name="closed" value="true" />
