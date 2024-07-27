@@ -1,9 +1,10 @@
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from typing import Optional
 
 def sample_rows_and_cols(X: pd.DataFrame, y: pd.DataFrame, num_sampled_rows: int, num_sampled_columns: int,
-                         random_state: int, replace: bool) -> tuple[pd.DataFrame, pd.DataFrame]:
+                         replace: bool, random_state: Optional[int] = None) -> tuple[pd.DataFrame, pd.DataFrame]:
     """
     Samples the same num_sampled_rows from X and y and sample num_sampled_columns from X.
 
@@ -21,10 +22,11 @@ def sample_rows_and_cols(X: pd.DataFrame, y: pd.DataFrame, num_sampled_rows: int
         Integer number of rows to sample.
     num_sampled_columns
         Integer number of columns to sample.
-    random_state
-        Integer random state for the random sample, useful for reproducible testing.  Do not set in production.
     replace
         Whether to sample with replacement
+    random_state
+        Optional random state for the random sample, settable for reproducible testing.  Leave None in production.
+
 
     Returns
     -------
@@ -40,7 +42,7 @@ def sample_rows_and_cols(X: pd.DataFrame, y: pd.DataFrame, num_sampled_rows: int
     X_subset = X_subset.sample(n=num_sampled_columns, random_state=random_state, replace=replace, axis=1)
     return X_subset, y_subset
 
-def split_and_calc_metric(X, y, test_size, model, metric_func, random_state):
+def split_and_calc_metric(X, y, test_size, model, metric_func, random_state: Optional[int] = None):
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=test_size, random_state=random_state)
     model.fit(X_train, y_train)
@@ -48,7 +50,7 @@ def split_and_calc_metric(X, y, test_size, model, metric_func, random_state):
     metric_test = metric_func(y_test, model.predict(X_test))
     return {'train':metric_train, 'test':metric_test}
 
-def sample_and_calc_metric(X, y, num_sampled_rows, num_sampled_columns, test_size, model, metric_func, random_state, replace):
-    X_sub, y_sub = sample_rows_and_cols(X, y, num_sampled_rows, num_sampled_columns, random_state+1, replace=replace)
-    metric_tuple = split_and_calc_metric(X_sub, y_sub, test_size, model, metric_func, random_state)
+def sample_and_calc_metric(X, y, num_sampled_rows, num_sampled_columns, test_size, model, metric_func, replace, random_state: Optional[int] = None) -> tuple[pd.DataFrame, pd.DataFrame]:
+    X_sub, y_sub = sample_rows_and_cols(X, y, num_sampled_rows, num_sampled_columns, replace=replace, random_state=random_state)
+    metric_tuple = split_and_calc_metric(X_sub, y_sub, test_size, model, metric_func, random_state=random_state)
     return metric_tuple
