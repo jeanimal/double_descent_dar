@@ -36,6 +36,7 @@ def sample_rows_and_cols(X: pd.DataFrame, y: pd.DataFrame, num_sampled_rows: int
     if X.shape[0] != y.shape[0]:
         raise ValueError(f"X had and y must have the same number of rows but had {X.shape[0]} and {y.shape[0]}.")
     # TODO: Change function since np.random uses np.random.seed(42) rather than the passed-in state.
+    # New code should use the `~numpy. random. Generator. choice` method of a `~numpy. random. Generator` instance
     indices = np.random.choice(X.index, num_sampled_rows, replace=replace)
     X_subset = X.iloc[indices]
     y_subset = y.iloc[indices]
