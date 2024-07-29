@@ -210,7 +210,8 @@
       <workItem from="1722099450348" duration="250000" />
       <workItem from="1722107672042" duration="2186000" />
       <workItem from="1722116279266" duration="300000" />
-      <workItem from="1722176918803" duration="7348000" />
+      <workItem from="1722176918803" duration="8333000" />
+      <workItem from="1722261348053" duration="79000" />
     </task>
     <task id="LOCAL-00001" summary="Add requirements, csv and notebook to load csv into df">
       <option name="closed" value="true" />
