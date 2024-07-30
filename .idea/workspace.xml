@@ -7,6 +7,8 @@
     <list default="true" id="64b4409c-1c5f-4269-b588-a4198ac80a41" name="Changes" comment="Got U curve in notebook with reasonable settings.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/double_descent_dar/sample_eval.py" beforeDir="false" afterPath="$PROJECT_DIR$/double_descent_dar/sample_eval.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/double_descent_mtcars_reg.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/double_descent_mtcars_reg.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_sample_eval.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_sample_eval.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
