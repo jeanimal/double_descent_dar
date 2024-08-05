@@ -54,7 +54,7 @@ def split_and_calc_metric(X, y, test_size, model, metric_func, random_state: Opt
 
 # Wrap sklearn's train_test_split with train_rows and add column sampling.
 # Returns X_train, X_test, y_train, y_test.
-def train_test_split_by_rows_and_cols(X, y, num_train_rows, num_sampled_columns, replace: bool = True, random_state: Optional[int] = None):
+def train_test_split_by_rows_and_cols(X, y, num_train_rows, num_sampled_columns, replace: bool = True, random_state: Optional[np.random.RandomState] = None):
     train_size = num_train_rows / X.shape[0]
     print(f'using train_size {train_size}')
     X_subset = X.sample(n=num_sampled_columns, random_state=random_state, replace=replace, axis=1)
