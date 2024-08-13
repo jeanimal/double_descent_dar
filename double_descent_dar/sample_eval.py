@@ -54,11 +54,45 @@ def split_and_calc_metric(X, y, test_size, model, metric_func, random_state: Opt
     return {'train': metric_train, 'test': metric_test}
 
 
-# Wrap sklearn's train_test_split with train_rows and add column sampling.
-# Returns X_train, X_test, y_train, y_test.
 def train_test_split_by_rows_and_cols(X: pd.DataFrame, y: pd.DataFrame, num_train_rows: int, num_columns: int,
                                       replace: bool = True, random_state: Optional[np.random.RandomState] = None,
                                       verbose: bool=False) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    """
+    Use sklearn train_test_split with a fixed number of rows plus column sampling.
+
+    sklearn's train_test_split takes a proportion of taining rows as an input and always
+    uses all columns.  But controlling the training rows and columns allows controlling the
+      overparametrization ratio = num_columns / num_rows
+    as described in this paper:
+    Hastie, T., Montanari, A., Rosset, S., & Tibshirani, R. J. (2020). Surprises in High-Dimensional
+    Ridgeless Least Squares Interpolation. http://arxiv.org/abs/1903.08560
+
+    Returns a tuple of X_train, X_test, y_train, y_test, where X_train has shape (num_train_rows, num_columns) and
+    y_train has shape (num_train_rows, 1).
+
+    Sampling of columns can be with or without replacement based on the boolean value of replace.
+
+    Parameters
+    ----------
+    X
+        DataFrame to sample. If replace=False, must have shape >= (num_sampled_rows, num_sampled_columns).
+    y
+        Single-column dataFrame to sample. If replace=False, must have shape > (num_sampled_rows, 1).
+    num_train_rows
+        Integer number of rows to sample for X_train.
+    num_columns
+        Integer number of columns to sample.
+    replace
+        Whether to sample with replacement
+    random_state
+        Optional random state for the random sample, settable for reproducibility.
+
+
+    Returns
+    -------
+    X_train, X_test, y_train, y_test
+        Sampled versions of the input dataframes.
+    """
     train_size = num_train_rows / X.shape[0]
     if verbose:
         # print(f"num_train_rows: {num_train_rows}")
