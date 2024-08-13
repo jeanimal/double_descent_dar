@@ -67,8 +67,14 @@ def train_test_split_by_rows_and_cols(X: pd.DataFrame, y: pd.DataFrame, num_trai
     Hastie, T., Montanari, A., Rosset, S., & Tibshirani, R. J. (2020). Surprises in High-Dimensional
     Ridgeless Least Squares Interpolation. http://arxiv.org/abs/1903.08560
 
-    Returns a tuple of X_train, X_test, y_train, y_test, where X_train has shape (num_train_rows, num_columns) and
-    y_train has shape (num_train_rows, 1).
+    The overparametrization ratio can roughly distinguish classes of behavior:
+    * less than 1: underfitting (assuming the sampled X matrix is full rank, among other things).
+    * equal to 1: interpolating (assuming the sampled X matrix is full rank, among other things).
+    * greater than 1: overparameterized and potentially overfitting
+
+    The function has the same output as sklearn train_test_split: a tuple of X_train, X_test,
+    y_train, y_test, where X_train has shape (num_train_rows, num_columns) and y_train has shape
+    (num_train_rows, 1).
 
     Sampling of columns can be with or without replacement based on the boolean value of replace.
 
