@@ -60,23 +60,33 @@ def train_test_split_by_rows_and_cols(X: pd.DataFrame, y: pd.DataFrame, num_trai
     """
     Use sklearn train_test_split with a fixed number of rows plus column sampling.
 
-    sklearn's train_test_split takes a proportion of taining rows as an input and always
-    uses all columns.  But controlling the training rows and columns allows controlling the
-      overparametrization ratio = num_columns / num_rows
-    as described in this paper:
-    Hastie, T., Montanari, A., Rosset, S., & Tibshirani, R. J. (2020). Surprises in High-Dimensional
-    Ridgeless Least Squares Interpolation. http://arxiv.org/abs/1903.08560
-
-    The overparametrization ratio can roughly distinguish classes of behavior:
-    * less than 1: underfitting (assuming the sampled X matrix is full rank, among other things).
-    * equal to 1: interpolating (assuming the sampled X matrix is full rank, among other things).
-    * greater than 1: overparameterized and potentially overfitting
-
-    The function has the same output as sklearn train_test_split: a tuple of X_train, X_test,
+    This function has the same output as sklearn train_test_split: a tuple of X_train, X_test,
     y_train, y_test, where X_train has shape (num_train_rows, num_columns) and y_train has shape
     (num_train_rows, 1).
 
     Sampling of columns can be with or without replacement based on the boolean value of replace.
+
+    Why?
+
+    sklearn's train_test_split takes a proportion of taining rows as an input and always
+    uses all columns.  But controlling the training rows and columns is helpful for controlling the
+    overparametrization ratio, defined as:
+
+      overparametrization ratio = num_parameters / num_rows
+
+    In many estimation models, the number of parameters is closely related to the number of columns.
+    For example, in ordinary least squares (OLS) regression without an intercept, the number of
+    parameters equals the number of columns, and when there is an intercept, the number of
+    parameters is number of columns + 1.
+
+    The overparameterization ratio is described in this paper:
+    Hastie, T., Montanari, A., Rosset, S., & Tibshirani, R. J. (2020). Surprises in High-Dimensional
+    Ridgeless Least Squares Interpolation. http://arxiv.org/abs/1903.08560
+
+    The overparametrization ratio distinguish these classes of behavior:
+    * less than 1: uncerparameterized
+    * equal to 1: interpolating
+    * greater than 1: overparameterized
 
     Parameters
     ----------
