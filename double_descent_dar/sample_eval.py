@@ -109,6 +109,9 @@ def train_test_split_by_rows_and_cols(X: pd.DataFrame, y: pd.DataFrame, num_trai
     X_train, X_test, y_train, y_test
         Sampled versions of the input dataframes.
     """
+    if num_train_rows > X.shape[0] or num_train_rows <= 0:
+        raise ValueError("num_train_rows must be in the range (0, num_rows_in_X) which"
+                         f"for this input is (0, {X.shape[0]}] but num_train_rows was {num_train_rows}.")
     train_size = num_train_rows / X.shape[0]
     if verbose:
         # print(f"num_train_rows: {num_train_rows}")
