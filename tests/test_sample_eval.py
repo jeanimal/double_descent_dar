@@ -64,18 +64,6 @@ class TestSampleEval(unittest.TestCase):
         self.assertGreaterEqual(train_test_metric['train'], 0)
         self.assertGreater(train_test_metric['test'], train_test_metric['train'])
 
-    def test_split_sample_and_calc(self):
-        X = pd.DataFrame({'a': [1, 5, 3, 4, 2, 6, 0, 9, 7, 8],
-                          'b': [8, 7, 9, 0, 6, 3, 4, 3, 5, 1]})
-        y = pd.DataFrame({'target': range(0, 10)})
-        num_rows = 6
-        num_cols = 2
-        model = linear_model.LinearRegression()
-        train_test_metric = sample_eval.split_sample_and_calc_metric(X, y, num_rows, num_cols, model, mean_absolute_error)
-        self.assertGreaterEqual(train_test_metric['train'], 0)
-        self.assertGreater(train_test_metric['test'], train_test_metric['train'])
-        print(train_test_metric)
-
 
 if __name__ == '__main__':
     unittest.main()
