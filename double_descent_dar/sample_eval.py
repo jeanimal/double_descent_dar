@@ -167,19 +167,3 @@ def sample_and_calc_metric(X, y, num_sampled_rows, num_sampled_columns, test_siz
                                         random_state=random_state)
     metric_tuple = split_and_calc_metric(X_sub, y_sub, test_size, model, metric_func, random_state=random_state)
     return metric_tuple
-
-
-def sample_dataframes(X, y, rows_per_sample, cols_per_sample, num_samples, rng: Optional[np.random.RandomState] = None):
-    if X.shape[0] != y.shape[0]:
-        raise ValueError(f"X had and y must have the same number of rows but had {X.shape[0]} and {y.shape[0]}.")
-
-    if rng is None:
-        rng = np.random.default_rng()
-    total_rows, total_cols = X.shape
-
-    row_indices = rng.choice(total_rows, size=(num_samples, rows_per_sample), replace=True)
-    col_indices = rng.choice(total_cols, size=(num_samples, cols_per_sample), replace=True)
-
-    sampled_X = [X.iloc[row_idx, col_idx].values for row_idx, col_idx in zip(row_indices, col_indices)]
-    sampled_y = [y.iloc[row_idx].values for row_idx in row_indices]
-    return zip(sampled_X, sampled_y)
