@@ -123,10 +123,17 @@ def train_test_split_by_rows_and_cols(X: pd.DataFrame, y: pd.DataFrame, num_trai
 
 
 # Combine the above two functions.
-def sample_and_calc_metric_by_rows_and_cols(X: pd.DataFrame, y: pd.DataFrame, num_train_rows: int, num_columns: int,
-                                            model, metric_func, replace: bool = True, random_state: Optional[np.random.RandomState] = None,
-                                            verbose: bool=False) -> \
-Dict[str, float]:
+def sample_and_calc_metric_by_rows_and_cols(
+        X: pd.DataFrame,
+        y: pd.DataFrame,
+        um_train_rows: int,
+        num_columns: int,
+        model,
+        metric_func: Callable[[pd.DataFrame, np.ndarray], float],
+        replace: bool = True,
+        random_state: Optional[np.random.RandomState] = None,
+        verbose: bool=False
+) -> Dict[str, float]:
     X_train, X_test, y_train, y_test = train_test_split_by_rows_and_cols(X, y, num_train_rows, num_columns, replace, random_state, verbose)
     model.fit(X_train, y_train)
     metric_train = metric_func(y_train, model.predict(X_train))
