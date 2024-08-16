@@ -5,4 +5,3 @@ pandas
 pytest
 parameterized
 scikit-learn
-unittest

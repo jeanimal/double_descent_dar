@@ -1,5 +1,9 @@
+import numpy as np
 import pandas as pd
 import pytest
+from sklearn.exceptions import NotFittedError
+from sklearn.metrics import mean_absolute_error
+
 from double_descent_dar import sample_eval
 
 
@@ -33,3 +37,30 @@ def test_train_test_split_by_rows_and_cols_err_too_many_cols():
     y = pd.DataFrame({'target': range(0, 10)})
     with pytest.raises(ValueError, match=r".*larger sample.*"):
         _ = sample_eval.train_test_split_by_rows_and_cols(X, y, num_train_rows=6, num_columns=99, replace=False)
+
+
+class EstimatorForTesting():
+
+    def __init__(self, value_to_return):
+        self.value_to_return = value_to_return
+        self.fitted = False
+
+    def fit(self, X_train, y_train, replace=True, verbose=False):
+        self.fitted = True
+
+    def predict(self, X):
+        if not self.fitted:
+            raise NotFittedError('You must fit before predict')
+        return np.full((X.shape[0], 1), self.value_to_return)
+def test_sample_and_calc_metric_by_rows_and_cols():
+    X = pd.DataFrame({'a': [1, 5, 3, 4, 2, 6, 0, 9, 7, 8],
+                      'b': [8, 7, 9, 0, 6, 3, 4, 3, 5, 1]})
+    y = pd.DataFrame({'target': range(0, 10)})
+    model = EstimatorForTesting(0.0)
+    results_dict = sample_eval.sample_and_calc_metric_by_rows_and_cols(
+        X, y,
+        num_train_rows=6, num_columns=1,
+        model=model,
+        metric_func=mean_absolute_error)
+    assert 'train' in results_dict
+    assert 'test' in results_dict
