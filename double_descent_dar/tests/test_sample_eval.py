@@ -52,6 +52,16 @@ class EstimatorForTesting():
         if not self.fitted:
             raise NotFittedError('You must fit before predict')
         return np.full((X.shape[0], 1), self.value_to_return)
+
+def test_estimator_for_testing():
+    estimator = EstimatorForTesting(value_to_return=1.1)
+    estimator.fit(pd.DataFrame(),pd.DataFrame())
+    df = estimator.predict(pd.DataFrame([[1], [2], [3]]))
+    assert df.shape == (3, 1)
+    for row in df:
+        assert row[0] == 1.1
+
+
 def test_sample_and_calc_metric_by_rows_and_cols():
     X = pd.DataFrame({'a': [1, 5, 3, 4, 2, 6, 0, 9, 7, 8],
                       'b': [8, 7, 9, 0, 6, 3, 4, 3, 5, 1]})
