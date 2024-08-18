@@ -74,3 +74,20 @@ def test_sample_and_calc_metric_by_rows_and_cols():
         metric_func=mean_absolute_error)
     assert 'train' in results_dict
     assert 'test' in results_dict
+
+def test_sample_and_calc_metrics_by_rows_and_cols_one_metric_two_cols():
+    X = pd.DataFrame({'a': [1, 5, 3, 4, 2, 6, 0, 9, 7, 8],
+                      'b': [8, 7, 9, 0, 6, 3, 4, 3, 5, 1]})
+    y = pd.DataFrame({'target': range(0, 10)})
+    model = EstimatorForTesting(0.0)
+    metric_tuple = sample_eval.MetricTuple('a', mean_absolute_error, sample_eval.DatasetType.train)
+    results_dict = sample_eval.sample_and_calc_metrics_by_rows_and_cols(
+        X, y,
+        num_train_rows=6, num_columns_list=[1,2],
+        model=model,
+        metric_tuples=[metric_tuple],
+        num_samples=3)
+    assert 'a' in results_dict
+    # Shape should have num_samples rows, len(num_columns_list) columns.
+    assert results_dict['a'].shape == (3, 2), "metric 'a' shape is not correct"
+    print(results_dict['a'])

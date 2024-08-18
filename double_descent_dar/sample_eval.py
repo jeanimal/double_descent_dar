@@ -81,31 +81,51 @@ class MetricTuple:
     metric_func: Callable[[pd.DataFrame, np.ndarray], float]
     dataset_type: DatasetType
 
+def _eval_metric_on_chosen_datatype(
+        model: Callable[[pd.DataFrame], np.ndarray],
+        metric_tuple: MetricTuple,
+        X_train: pd.DataFrame,
+        X_test: pd.DataFrame,
+        y_train: pd.DataFrame,
+        y_test: pd.DataFrame):
+    if metric_tuple.dataset_type == DatasetType.train:
+        df_to_predict = X_train
+        df_actuals = y_train
+    elif metric_tuple.dataset_type == DatasetType.test:
+        df_to_predict = X_test
+        df_actuals = y_test
+    else:
+        raise ValueError(f"Unrecognized dataset type {metric_tuple.dataset_type}")
+    prediction = model.predict(df_to_predict)
+    return metric_tuple.metric_func(df_actuals, prediction)
+
 def sample_and_calc_metrics_by_rows_and_cols(
         X: pd.DataFrame,
         y: pd.DataFrame,
         num_train_rows: int,
-        num_columns: int,
+        num_columns_list: list[int],
         model,
         metric_tuples: list[MetricTuple],
+        num_samples: int,
         replace: bool = True,
         random_state: Optional[np.random.RandomState] = None,
         verbose: bool=False
-) -> Dict[str, float]:
-    X_train, X_test, y_train, y_test = train_test_split_by_rows_and_cols(X, y, num_train_rows, num_columns, replace, random_state, verbose)
-    model.fit(X_train, y_train)
+) -> Dict[str, np.ndarray]:
     out_dict = {}
+    # Initialize.
     for metric_tuple in metric_tuples:
-        if metric_tuple.dataset_type == DatasetType.train:
-            df_to_predict = X_train
-            df_actuals = y_train
-        elif metric_tuple.dataset_type == DatasetType.test:
-            df_to_predict = X_test
-            df_actuals = y_test
-        else:
-            raise ValueError(f"Unrecognized dataset type {metric_tuple.dataset_type}")
-        prediction = model.predict(df_to_predict)
-        out_dict[metric_tuple.name] = metric_tuple.metric_func(df_actuals, prediction)
+        out_dict[metric_tuple.name] = np.zeros((num_samples, len(num_columns_list)))
+    def sample_and_eval(metric_dict, sample_index: int, num_columns_index: int, num_columns: int):
+        X_train, X_test, y_train, y_test = train_test_split_by_rows_and_cols(
+            X, y, num_train_rows, num_columns, replace, random_state, verbose)
+        model.fit(X_train, y_train)
+        for metric_tuple in metric_tuples:
+            arr = metric_dict[metric_tuple.name]
+            val = _eval_metric_on_chosen_datatype(
+                model, metric_tuple, X_train, X_test, y_train, y_test)
+            arr[sample_index, num_columns_index] = val
+    for i, num_columns in enumerate(num_columns_list):
+        [sample_and_eval(out_dict, sample_index, i, num_columns) for sample_index in range(num_samples)]
     return out_dict
 
 def sample_and_calc_metric_by_rows_and_cols(
@@ -119,29 +139,14 @@ def sample_and_calc_metric_by_rows_and_cols(
         random_state: Optional[np.random.RandomState] = None,
         verbose: bool=False
 ) -> Dict[str, float]:
+    """Wrapper to return {'train': metric_train, 'test': metric_test}
+    Hard-coded to run just one sample with train and test data for the metric.
+    """
     metrics = [
         MetricTuple('train', metric_func, DatasetType.train),
         MetricTuple('test', metric_func, DatasetType.test)
     ]
-    return sample_and_calc_metrics_by_rows_and_cols(X, y, num_train_rows, num_columns, model, metrics, replace, random_state, verbose)
-    # return {'train': metric_train, 'test': metric_test}
-
-
-def run_multiple_samples(
-        X: pd.DataFrame,
-        y: pd.DataFrame,
-        num_train_rows: int,
-        num_columns: int,
-        model,
-        metric_func: Callable[[pd.DataFrame, np.ndarray], float],
-        N: int,
-        replace: bool = True,
-        random_state: Optional[np.random.RandomState] = None
-) -> pd.DataFrame:
-    results = [
-        sample_and_calc_metric_by_rows_and_cols(
-            X, y, num_train_rows, num_columns, model, metric_func, replace, random_state, verbose=False
-        )
-        for _ in range(N)
-    ]
-    return pd.DataFrame(results)
+    out_dict = sample_and_calc_metrics_by_rows_and_cols(
+        X, y, num_train_rows, [num_columns], model, metrics,
+        num_samples=1, replace=replace, random_state=random_state, verbose=verbose)
+    return dict((k, array[0, 0]) for k, array in out_dict.items())
