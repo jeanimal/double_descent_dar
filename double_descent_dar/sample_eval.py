@@ -111,6 +111,42 @@ def sample_and_calc_metrics_by_rows_and_cols(
         random_state: Optional[np.random.RandomState] = None,
         verbose: bool=False
 ) -> Dict[str, np.ndarray]:
+    """Repeatedly sample rows and columns to train a model and collect metrics.
+
+    Parameters
+    ----------
+    X
+        DataFrame to sample. If replace=False, must have shape >= (num_sampled_rows, num_sampled_columns).
+    y
+        Single-column dataFrame to sample. If replace=False, must have shape > (num_sampled_rows, 1).
+    num_train_rows
+        Integer number of rows to sample for X_train.
+    num_columns_list
+        List of integer number of columns to sample.  Each number must range from 1 to the
+        total number of columns in X. The output arrays have `num_samples` rows and
+        `len(num_columns_list)` columns.
+    model
+        Estimator model to use.  Must have `fit` and `predict` methods implemented (as in sklearn).
+    metric_tuples
+        List of evaluation metrics to use and how.  The output dictionary will have an entry for each
+        tuple, using the metric name as the key.
+    num_samples
+        Integer number of times to sample rows and columns, fit the model, and collect metrics.
+        The output arrays have `num_samples` rows and `len(num_columns_list)` columns.
+    replace
+        Whether to sample with replacement
+    random_state
+        Optional random state for the random sample, settable for reproducibility.
+    verbose
+        Boolean to request some debug print statements.
+
+
+    Returns
+    -------
+    dict of metric name to a numpy array of metric values
+        The dict has as many keys as metric_tuples, with the metric names as the keys.
+        The associates arrays  have `num_samples` rows and `len(num_columns_list)` columns.
+    """
     out_dict = {}
     # Initialize.
     for metric_tuple in metric_tuples:
