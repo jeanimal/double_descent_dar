@@ -177,7 +177,7 @@ def sample_and_calc_metric_by_rows_and_cols(
         random_state: Optional[np.random.RandomState] = None,
         verbose: bool=False
 ) -> Dict[str, float]:
-    """Wrapper to return {'train': metric_train, 'test': metric_test}
+    """Wrapper to return {'train': metric_train, 'test': metric_test}.
     Hard-coded to run just one sample with train and test data for the metric.
     """
     metrics = [
