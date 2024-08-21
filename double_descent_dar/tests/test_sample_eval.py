@@ -61,6 +61,33 @@ def test_estimator_for_testing():
     for row in df:
         assert row[0] == 1.1
 
+def test_eval_metric_on_chosen_datatype():
+    X_train = pd.DataFrame(
+        {'a': [1, 5, 3, 4, 2, 6, 0],
+         'b': [8, 7, 9, 0, 6, 3, 4]})
+    X_test = pd.DataFrame(
+        {'a': [9, 7, 8],
+         'b': [3, 5, 1]})
+    y_train = pd.DataFrame({'target': range(0, 7)})
+    y_test = pd.DataFrame({'target': range(100, 103)})
+    # The predicted value will always be 123.
+    predicted_values= 123
+    estimator = EstimatorForTesting(value_to_return=predicted_values)
+    estimator.fit(X_train, y_train)
+
+    # y_train has low actual values.
+    out = sample_eval._eval_metric_on_chosen_datatype(
+        estimator,
+        sample_eval.MetricTuple('train_y_true', mean_absolute_error, sample_eval.DatasetType.train),
+        X_train, X_test, y_train, y_test)
+    assert out == (123-3), 'training set used'
+
+    # y_test has high actual values.
+    out = sample_eval._eval_metric_on_chosen_datatype(
+        estimator,
+        sample_eval.MetricTuple('test_y_true', mean_absolute_error, sample_eval.DatasetType.test),
+        X_train, X_test, y_train, y_test)
+    assert out == (123-101), 'test set used'
 
 def test_sample_and_calc_metric_by_rows_and_cols():
     X = pd.DataFrame({'a': [1, 5, 3, 4, 2, 6, 0, 9, 7, 8],
@@ -90,4 +117,3 @@ def test_sample_and_calc_metrics_by_rows_and_cols_one_metric_two_cols():
     assert 'a' in results_dict
     # Shape should have num_samples rows, len(num_columns_list) columns.
     assert results_dict['a'].shape == (3, 2), "metric 'a' shape is not correct"
-    print(results_dict['a'])

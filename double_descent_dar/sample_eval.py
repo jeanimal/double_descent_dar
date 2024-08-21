@@ -77,8 +77,10 @@ DatasetType = Enum('DatasetType', ['train', 'test'])
 
 @dataclass
 class MetricTuple:
+    """Metric name, function to apply, data type to apply it to."""
     name: str
     metric_func: Callable[[pd.DataFrame, np.ndarray], float]
+    """The metric func implements the sklearn.metric function, e.g. mae, rmse, etc."""
     dataset_type: DatasetType
 
 def _eval_metric_on_chosen_datatype(
