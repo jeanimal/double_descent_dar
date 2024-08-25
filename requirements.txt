@@ -4,4 +4,5 @@ numpy
 pandas
 pytest
 parameterized
+seaborn
 scikit-learn
