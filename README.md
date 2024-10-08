@@ -19,8 +19,7 @@ Fully explained in:
   https://medium.com/@jeanimal/technical-even-linear-regression-can-escape-the-bias-variance-tradeoff-263abe6acb1c
 - Video: https://youtu.be/bM6WJVyytEg
 
-Code:
+More Code:
 
-- This code reproduction is in python.
-- A reproduction in R is here:
+- This code reproduction is in python. A reproduction in R is here:
   https://github.com/jeanimal/farewell_bias_variance
