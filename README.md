@@ -1,6 +1,6 @@
 # double_descent_dar
 
-Reproducing the ideas from this wonderful paper:
+Reproducing the ideas in a simple way from this wonderful but highly mathematical paper:
 
 Yehuda Dar, Muthukumar, V., & Baraniuk, R. (2021). A Farewell to the
 Bias-Variance Tradeoff? An Overview of the Theory of Overparameterized
