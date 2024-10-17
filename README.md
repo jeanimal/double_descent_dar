@@ -8,7 +8,7 @@ Machine Learning. https://arxiv.org/abs/2109.02355
 
 ## Blog
 
-The best summary of what I explore in this repo and WHY is in my ***glog***:
+The best summary of what I explore in this repo and WHY is in my ***blog***:
 
 https://medium.com/@jeanimal/how-double-descent-breaks-the-shackles-of-the-interpolation-threshold-5f5990dc02b2
 
