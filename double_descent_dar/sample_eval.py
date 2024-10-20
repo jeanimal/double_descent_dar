@@ -5,15 +5,15 @@ from enum import Enum
 from sklearn.model_selection import train_test_split
 from typing import Callable, Dict, Optional
 
-def train_test_split_by_rows_and_cols(X: pd.DataFrame, y: pd.DataFrame, num_train_rows: int, num_columns: int,
+def train_test_split_by_rows_and_cols(X: pd.DataFrame, y: pd.DataFrame, num_rows: int, num_columns: int,
                                       replace: bool = True, random_state: Optional[np.random.RandomState] = None,
                                       verbose: bool=False) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """
     Use sklearn train_test_split with a fixed number of rows plus column sampling.
 
     This function has the same output as sklearn train_test_split: a tuple of X_train, X_test,
-    y_train, y_test, where X_train has shape (num_train_rows, num_columns) and y_train has shape
-    (num_train_rows, 1).
+    y_train, y_test, where X_train has shape (num_rows, num_columns) and y_train has shape
+    (num_rows, 1).
 
     Sampling of columns can be with or without replacement based on the boolean value of replace.
 
@@ -45,7 +45,7 @@ def train_test_split_by_rows_and_cols(X: pd.DataFrame, y: pd.DataFrame, num_trai
         DataFrame to sample. If replace=False, must have shape >= (num_sampled_rows, num_sampled_columns).
     y
         Single-column dataFrame to sample. If replace=False, must have shape > (num_sampled_rows, 1).
-    num_train_rows
+    num_rows
         Integer number of rows to sample for X_train.
     num_columns
         Integer number of columns to sample.
@@ -60,12 +60,12 @@ def train_test_split_by_rows_and_cols(X: pd.DataFrame, y: pd.DataFrame, num_trai
     X_train, X_test, y_train, y_test
         Sampled versions of the input dataframes.
     """
-    if num_train_rows > X.shape[0] or num_train_rows <= 0:
-        raise ValueError("num_train_rows must be in the range (0, num_rows_in_X) which"
-                         f"for this input is (0, {X.shape[0]}] but num_train_rows was {num_train_rows}.")
-    train_size = num_train_rows / X.shape[0]
+    if num_rows > X.shape[0] or num_rows <= 0:
+        raise ValueError("num_rows must be in the range (0, num_rows_in_X) which"
+                         f"for this input is (0, {X.shape[0]}] but num_rows was {num_rows}.")
+    train_size = num_rows / X.shape[0]
     if verbose:
-        # print(f"num_train_rows: {num_train_rows}")
+        # print(f"num_rows: {num_rows}")
         # print(f"X.shape[0]: {X.shape[0]}")
         print(f'using train_size {train_size}')
     X_subset = X.sample(n=num_columns, random_state=random_state, replace=replace, axis=1)
@@ -104,7 +104,7 @@ def _eval_metric_on_chosen_datatype(
 def sample_and_calc_metrics_by_rows_and_cols(
         X: pd.DataFrame,
         y: pd.DataFrame,
-        num_train_rows: int,
+        num_rows: int,
         num_columns_list: list[int],
         model,
         metric_tuples: list[MetricTuple],
@@ -121,7 +121,7 @@ def sample_and_calc_metrics_by_rows_and_cols(
         DataFrame to sample. If replace=False, must have shape >= (num_sampled_rows, num_sampled_columns).
     y
         Single-column dataFrame to sample. If replace=False, must have shape > (num_sampled_rows, 1).
-    num_train_rows
+    num_rows
         Integer number of rows to sample for X_train.
     num_columns_list
         List of integer number of columns to sample.  Each number must range from 1 to the
@@ -155,7 +155,7 @@ def sample_and_calc_metrics_by_rows_and_cols(
         out_dict[metric_tuple.name] = np.zeros((num_samples, len(num_columns_list)))
     def sample_and_eval(metric_dict, sample_index: int, num_columns_index: int, num_columns: int):
         X_train, X_test, y_train, y_test = train_test_split_by_rows_and_cols(
-            X, y, num_train_rows, num_columns, replace, random_state, verbose)
+            X, y, num_rows, num_columns, replace, random_state, verbose)
         model.fit(X_train, y_train)
         for metric_tuple in metric_tuples:
             arr = metric_dict[metric_tuple.name]
@@ -169,7 +169,7 @@ def sample_and_calc_metrics_by_rows_and_cols(
 def sample_and_calc_metric_by_rows_and_cols(
         X: pd.DataFrame,
         y: pd.DataFrame,
-        num_train_rows: int,
+        num_rows: int,
         num_columns: int,
         model,
         metric_func: Callable[[pd.DataFrame, np.ndarray], float],
@@ -185,6 +185,6 @@ def sample_and_calc_metric_by_rows_and_cols(
         MetricTuple('test', metric_func, DatasetType.test)
     ]
     out_dict = sample_and_calc_metrics_by_rows_and_cols(
-        X, y, num_train_rows, [num_columns], model, metrics,
+        X, y, num_rows, [num_columns], model, metrics,
         num_samples=1, replace=replace, random_state=random_state, verbose=verbose)
     return dict((k, array[0, 0]) for k, array in out_dict.items())
